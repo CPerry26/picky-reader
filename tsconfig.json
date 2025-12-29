@@ -1,7 +1,6 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "rootDir": "./src",
     "outDir": "./dist",
 
     // Environment Settings
@@ -12,7 +11,7 @@
 
     // For nodejs:
     "lib": ["esnext"],
-    "types": ["node"],
+    "types": ["node", "jest"],
 
     // Other Outputs
     "sourceMap": true,
@@ -39,7 +38,8 @@
     "esModuleInterop": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
-    "allowImportingTsExtensions": true
-  }
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

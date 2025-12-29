@@ -1,8 +1,9 @@
 import * as csv from 'fast-csv';
-import { CSVParser } from './csv-parser.ts';
-import { type GoodreadsCSVRow, type GoodreadsRow, goodreadsHeaders } from '../types/goodreads.ts';
-import { createReadStream } from 'fs';
+import { CSVParser } from './csv-parser.js';
+import { type GoodreadsCSVRow, type GoodreadsRow, goodreadsHeaders } from '../types/goodreads.js';
+import { createReadStream, existsSync } from 'fs';
 import { once } from 'events';
+import { isAbsolute, resolve, normalize } from 'path';
 
 export class GoodreadsCSVParser extends CSVParser<GoodreadsRow> {
     private filepath: string;
@@ -10,7 +11,14 @@ export class GoodreadsCSVParser extends CSVParser<GoodreadsRow> {
 
     constructor(filepath: string) {
         super();
-        this.filepath = filepath;
+
+        const normalizedFilepath = isAbsolute(filepath) ? normalize(filepath) : normalize(resolve(filepath));
+
+        if (!existsSync(normalizedFilepath)) {
+            throw new Error(`File not found at path: ${normalizedFilepath}`);
+        }
+
+        this.filepath = normalizedFilepath;
         this.finalRows = [];
     }
 
@@ -20,9 +28,9 @@ export class GoodreadsCSVParser extends CSVParser<GoodreadsRow> {
         .pipe(csv.format<GoodreadsCSVRow, GoodreadsRow>({ headers: true }))
         .transform((row, next) => {
             const transformedRow = {
-                title: row.title,
-                author: row.author,
-                shelf: row.exclusiveshelf
+                title: row.title.trim(),
+                author: row.author.trim(),
+                shelf: row.exclusiveshelf.trim()
             } as GoodreadsRow;
 
             if (transformedRow.shelf === 'to-read') {
