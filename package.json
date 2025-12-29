@@ -1,0 +1,43 @@
+{
+  "name": "picky-reader",
+  "version": "1.0.0",
+  "description": "Randomly choose your next read to remove that pesky anxiety and indecision.",
+  "keywords": [
+    "hardcover",
+    "books",
+    "tbr",
+    "read"
+  ],
+  "engines": {
+    "node": ">24"
+  },
+  "homepage": "https://github.com/CPerry26/picky-reader#readme",
+  "bugs": {
+    "url": "https://github.com/CPerry26/picky-reader/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CPerry26/picky-reader.git"
+  },
+  "license": "ISC",
+  "author": "CPerry26",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "@types/yargs": "^17.0.35",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "fast-csv": "^5.0.5",
+    "yargs": "^18.0.0"
+  }
+}
