@@ -37,8 +37,8 @@ export type GoodreadsCSVRow = {
 // Sparse array to ignore certain columns when parsing a Goodreads library export.
 export const goodreadsHeaders = [
     undefined, 
-    'title', 
-    'author', 
+    "title", 
+    "author", 
     undefined,
     undefined,
     undefined,
@@ -54,7 +54,7 @@ export const goodreadsHeaders = [
     undefined,
     undefined,
     undefined,
-    'exclusiveshelf',
+    "exclusiveshelf",
     undefined,
     undefined,
     undefined,

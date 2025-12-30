@@ -1,5 +1,5 @@
 {
-  "name": "picky-reader",
+  "name": "@cperry26/picky-reader",
   "version": "1.0.0",
   "description": "Randomly choose your next read to remove that pesky anxiety and indecision.",
   "keywords": [
@@ -9,7 +9,7 @@
     "read"
   ],
   "engines": {
-    "node": ">24"
+    "node": ">=24.x"
   },
   "homepage": "https://github.com/CPerry26/picky-reader#readme",
   "bugs": {
@@ -23,9 +23,13 @@
   "author": "CPerry26",
   "type": "module",
   "main": "index.js",
+  "bin": {
+    "picky-reader": "./dist/index.js"
+  },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "build": "tsc --project tsconfig.build.json"
+    "build": "tsc --project tsconfig.build.json",
+    "next-read": "node ./dist/index.js"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",

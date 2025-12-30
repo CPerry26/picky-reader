@@ -3,4 +3,4 @@ export type CustomCSVRow = {
     author: string;
 };
 
-export const customCSVHeaders = ['title', 'author'];
+export const customCSVHeaders = ["title", "author"];

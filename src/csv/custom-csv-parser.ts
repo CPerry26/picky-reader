@@ -1,9 +1,9 @@
-import * as csv from 'fast-csv';
-import { CSVParser } from './csv-parser.js';
-import { type CustomCSVRow, customCSVHeaders } from '../types/custom-csv.js';
-import { createReadStream, existsSync } from 'fs';
-import { once } from 'events';
-import { isAbsolute, resolve, normalize } from 'path';
+import * as csv from "fast-csv";
+import { CSVParser } from "./csv-parser.js";
+import { type CustomCSVRow, customCSVHeaders } from "../types/custom-csv.js";
+import { createReadStream, existsSync } from "fs";
+import { once } from "events";
+import { isAbsolute, resolve, normalize } from "path";
 
 export class CustomCSVParser extends CSVParser<CustomCSVRow> {
     private filepath: string;
@@ -31,12 +31,12 @@ export class CustomCSVParser extends CSVParser<CustomCSVRow> {
                 author: row.author.trim()
             }),
         )
-        .on('data', row => this.finalRows.push(row))
-        .on('error', error => console.error(error))
-        .on('end', (rowCount: number) => console.log(`Custom CSV parse complete - ${rowCount || this.finalRows.length}`, this.finalRows[0]));
+        .on("data", row => this.finalRows.push(row))
+        .on("error", error => console.error(error))
+        .on("end", (rowCount: number) => console.log(`Custom CSV parse complete - ${rowCount || this.finalRows.length}`, this.finalRows[0]));
 
         // Because createReadStream is async but can't be awaited, await the end event.
-        await once(stream, 'end');
+        await once(stream, "end");
 
         return Promise.resolve(this.finalRows);
     }
