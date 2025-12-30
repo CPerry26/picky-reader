@@ -1,7 +1,12 @@
+import { jest } from '@jest/globals';
 import { CustomCSVParser } from "../src/csv/custom-csv-parser.js";
 
 describe('CustomCSVParser', () => {
     let csvParser: CustomCSVParser;
+
+    beforeAll(() => {
+        jest.spyOn(console, 'log').mockImplementation(() => {});
+    });
 
     it('should successfully parse and transform a custom sample csv', async() => {
         csvParser = new CustomCSVParser('tests/samples/sample-custom.csv');

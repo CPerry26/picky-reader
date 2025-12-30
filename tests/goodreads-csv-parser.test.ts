@@ -1,6 +1,11 @@
+import { jest } from '@jest/globals';
 import { GoodreadsCSVParser } from "../src/csv/goodreads-csv-parser.js";
 
 describe('GoodreadsCSVParser', () => {
+    beforeAll(() => {
+        jest.spyOn(console, 'log').mockImplementation(() => {});
+    })
+
     let csvParser: GoodreadsCSVParser;
 
     it('should successfully parse, transform, and filter a goodreads sample csv', async() => {
